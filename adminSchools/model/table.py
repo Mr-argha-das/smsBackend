@@ -1,6 +1,6 @@
-from mongoengine import Document, StringField, DateTimeField, BooleanField, IntField
+from mongoengine import Document, StringField, DateTimeField, BooleanField, IntField,EmbeddedDocumentField, ListField
 from datetime import datetime
-
+from fees.models.feesTable import FeeTerm
 class School(Document):
     school_name = StringField(required=True)
     email = StringField(required=True, unique=True)
@@ -15,6 +15,7 @@ class School(Document):
     is_active = BooleanField(default=True)
     registered_at = DateTimeField(default=datetime.utcnow)
     image_url = StringField()  # URL or filename of uploaded image
+    fee_structure = ListField(EmbeddedDocumentField(FeeTerm))
 
     meta = {
         "collection": "schools"
