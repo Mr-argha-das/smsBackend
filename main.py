@@ -9,6 +9,8 @@ from role.routes.roleRoutes import role_router
 from users.routes.userRoutes import user_router
 from ai.aimodel import ai_router
 from fees.routes.feesRoutes import fees_router;
+from utils.auth import client_router
+from fastapi.openapi.utils import get_openapi
 import os
 
 app = FastAPI()
@@ -29,7 +31,10 @@ UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
+
+
 # Include school router
+app.include_router(client_router, prefix="/api/auth", tags=["Auth"])
 app.include_router(school_router, prefix="/api/school", tags=["School"])
 app.include_router(class_section_router, prefix="/api/class-section", tags=["Class & Section"])
 app.include_router(student_router, prefix="/api/student", tags=["Student Login"])

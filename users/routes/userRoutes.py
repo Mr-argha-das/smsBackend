@@ -6,6 +6,8 @@ from role.model.table import Role
 from adminSchools.model.table import School
 from fastapi.security import OAuth2PasswordRequestForm
 
+from utils.auth import create_access_token, get_current_user, ClientApp
+
 user_router = APIRouter()
 
 @user_router.post("/add-user")
@@ -39,34 +41,7 @@ def add_user(
     return {"message": "User added", "id": str(user.id)}
 
 # Login (School or User)
-@user_router.post("/login")
-def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    email = form_data.username
-    password = form_data.password
 
-    # Try school login
-    school = School.objects(email=email, is_active=True).first()
-    if school and school.phone == password:
-        return {
-            "message": "School login success",
-            "id": str(school.id),
-            "type": "school"
-        }
-
-    # Try user login
-    user = User.objects(email=email, password=password, is_active=True).first()
-    if user:
-        return {
-            "message": "User login success",
-            "id": str(user.id),
-            "type": "user",
-            "role": user.role.name,
-
-            "permissions": user.role.permissions,
-            "data": json.loads(user.to_json())
-        }
-
-    raise HTTPException(status_code=401, detail="Invalid credentials")
 
 @user_router.get("/get-users")
 def get_users(school_id: str = Query(...)):
@@ -86,6 +61,12 @@ def delete_user(user_id: str):
         raise HTTPException(status_code=404, detail="User not found")
     user.delete()
     return {"message": "User deleted successfully"}
+
+@user_router.get("/me")
+def get_profile(current_user: dict = Depends(get_current_user)):
+    return {
+        "user": current_user  # contains decoded token info
+    }
 
 # Middleware for permission check (to be used inside API route)
 def check_permission(role: Role, permission: str):

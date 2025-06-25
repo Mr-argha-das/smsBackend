@@ -1,21 +1,26 @@
 import json
-from fastapi import APIRouter, HTTPException, Form
+from fastapi import APIRouter, Depends, HTTPException, Form
 from classes.model.table import Class, Section  # path adjust karna
 from bson import ObjectId
+
+from utils.auth import get_current_user
 
 class_section_router = APIRouter()
 
 @class_section_router.post("/add-class")
 def add_class(
-    school_id: str = Form(...),
+    current_user: dict = Depends(get_current_user),
+
     class_name: str = Form(...)
+    
 ):
     # Duplicate check
-    existing = Class.objects(school_id=school_id, class_name=class_name).first()
+    print(current_user["id"])
+    existing = Class.objects(school_id=current_user["id"], class_name=class_name).first()
     if existing:
         raise HTTPException(status_code=400, detail="Class already exists for this school.")
 
-    new_class = Class(school_id=school_id, class_name=class_name)
+    new_class = Class(school_id=current_user["id"], class_name=class_name)
     new_class.save()
 
     data = json.loads(new_class.to_json())
@@ -58,9 +63,9 @@ def add_section(
     }
 
 
-@class_section_router.get("/get-classes/{school_id}")
-def get_classes(school_id: str):
-    classes = Class.objects(school_id=school_id)
+@class_section_router.get("/get-classes")
+def get_classes(current_user: dict = Depends(get_current_user),):
+    classes = Class.objects(school_id=current_user["id"])
     class_list = json.loads(classes.to_json())
 
     for cls in class_list:
