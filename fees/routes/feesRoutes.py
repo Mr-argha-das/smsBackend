@@ -1,11 +1,23 @@
 from datetime import datetime
+import os
+import shutil
 from typing import List
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel
 from adminSchools.model.table import School
-from fees.models.feesTable import FeeTerm
-from students.model.fees_status import FeePaymentStatus
+from classes.model.table import Class, Section
 from students.model.student import Student
+from students.model.fees_status import FeePaymentStatus
+from fees.models.feesTable import FeeTerm
+
+fees_router = APIRouter()
+
+# --------------------------- #
+# 🔷 Pydantic Schemas
+# --------------------------- #
+
+UPLOAD_DIR = "uploads/students/"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 class FeeTermSchema(BaseModel):
     term_name: str
@@ -14,6 +26,8 @@ class FeeTermSchema(BaseModel):
 
 class StudentCreateSchema(BaseModel):
     school_id: str
+    class_id: str
+    section_id: str
     first_name: str
     last_name: str
     gender: str
@@ -31,54 +45,127 @@ class StudentCreateSchema(BaseModel):
     guardian_relation: str = "Parent"
     profile_image_url: str = None
 
+# --------------------------- #
+# 🔷 Set Fee Structure (Per Class)
+# --------------------------- #
+@fees_router.post("/class/{class_id}/fees")
+def set_class_fee_structure(class_id: str, terms: List[FeeTermSchema]):
+    cls = Class.objects(id=class_id).first()
+    if not cls:
+        raise HTTPException(status_code=404, detail="Class not found")
+    
+    cls.fee_structure = [FeeTerm(**term.dict()) for term in terms]
+    cls.save()
 
+    sync_fee_terms_with_class_students(cls)
 
-def initialize_student_fees(student: Student, school: School):
+    return {"message": f"Fee structure updated for class {cls.class_name}"}
+
+# --------------------------- #
+# 🔷 Fee Initializer
+# --------------------------- #
+def initialize_student_fees(student: Student):
+    cls = student.class_id
+    if not cls or not cls.fee_structure:
+        return
+
     student.fee_status = [
         FeePaymentStatus(term_name=term.term_name, paid=False, amount_paid=0.0)
-        for term in school.fee_structure
+        for term in cls.fee_structure
     ]
     student.save()
 
-def sync_fee_terms_with_students(school_id):
-    school = School.objects(id=school_id).first()
-    students = Student.objects(school_id=school)
+# --------------------------- #
+# 🔷 Sync Fee for Existing Students
+# --------------------------- #
+def sync_fee_terms_with_class_students(cls: Class):
+    students = Student.objects(class_id=cls)
     for student in students:
         existing_terms = {fee.term_name for fee in student.fee_status}
-        for term in school.fee_structure:
+        for term in cls.fee_structure:
             if term.term_name not in existing_terms:
                 student.fee_status.append(FeePaymentStatus(term_name=term.term_name, paid=False, amount_paid=0.0))
         student.save()
 
-fees_router = APIRouter()
-
-
-@fees_router.post("/schools/{school_id}/fees")
-def set_school_fee_structure(school_id: str, terms: List[FeeTermSchema]):
+# --------------------------- #
+# 🔷 Add Student (Class-wise Fee Setup)
+# --------------------------- #
+@fees_router.post("/add-student")
+async def add_student(
+    school_id: str = Form(...),
+    class_id: str = Form(...),
+    section_id: str = Form(...),
+    first_name: str = Form(...),
+    last_name: str = Form(...),
+    gender: str = Form(...),
+    dob: str = Form(""),
+    email: str = Form(""),
+    phone: str = Form(""),
+    roll_number: str = Form(...),
+    address: str = Form(""),
+    city: str = Form(""),
+    state: str = Form(""),
+    pincode: str = Form(""),
+    guardian_name: str = Form(...),
+    guardian_email: str = Form(""),
+    guardian_phone: str = Form(...),
+    guardian_relation: str = Form("Parent"),
+    image: UploadFile = File(None)
+):
+    # Validate references
     school = School.objects(id=school_id).first()
-    if not school:
-        raise HTTPException(status_code=404, detail="School not found")
-    school.fee_structure = [FeeTerm(**term.dict()) for term in terms]
-    school.save()
-    sync_fee_terms_with_students(school_id)
-    return {"message": "Fee structure updated"}
+    cls = Class.objects(id=class_id).first()
+    sec = Section.objects(id=section_id).first()
+    if not (school and cls and sec):
+        raise HTTPException(status_code=404, detail="School, Class or Section not found.")
 
-@fees_router.post("/students/")
-def add_student(data: StudentCreateSchema):
-    school = School.objects(id=data.school_id).first()
-    if not school:
-        raise HTTPException(status_code=404, detail="School not found")
-    student = Student(**data.dict())
-    student.school_id = school
+    # Save image
+    image_url = ""
+    if image:
+        filename = f"{datetime.utcnow().timestamp()}_{image.filename.replace(' ', '_')}"
+        filepath = os.path.join(UPLOAD_DIR, filename)
+        with open(filepath, "wb") as buffer:
+            shutil.copyfileobj(image.file, buffer)
+        image_url = f"/uploads/students/{filename}"
+
+    # Save student
+    student = Student(
+        school_id=school,
+        class_id=cls,
+        section_id=sec,
+        first_name=first_name,
+        last_name=last_name,
+        gender=gender,
+        dob=dob,
+        email=email,
+        phone=phone,
+        roll_number=roll_number,
+        address=address,
+        city=city,
+        state=state,
+        pincode=pincode,
+        guardian_name=guardian_name,
+        guardian_email=guardian_email,
+        guardian_phone=guardian_phone,
+        guardian_relation=guardian_relation,
+        profile_image_url=image_url,
+    )
     student.save()
-    initialize_student_fees(student, school)
-    return {"student_id": str(student.id)}
 
+    # 🔥 Add fee structure based on class
+    initialize_student_fees(student)
+
+    return {"message": "Student added successfully", "id": str(student.id)}
+
+# --------------------------- #
+# 🔷 Pay Fee
+# --------------------------- #
 @fees_router.post("/students/{student_id}/pay")
 def pay_term_fee(student_id: str, term_name: str, amount: float):
     student = Student.objects(id=student_id).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
+
     for fee in student.fee_status:
         if fee.term_name == term_name:
             if fee.paid:
@@ -88,13 +175,18 @@ def pay_term_fee(student_id: str, term_name: str, amount: float):
             fee.amount_paid = amount
             student.save()
             return {"message": f"Paid for {term_name}"}
+
     raise HTTPException(status_code=404, detail="Term not found")
 
+# --------------------------- #
+# 🔷 Get Fee Status for Student
+# --------------------------- #
 @fees_router.get("/students/{student_id}/fees")
 def get_fee_status(student_id: str):
     student = Student.objects(id=student_id).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
+
     return {
         "name": f"{student.first_name} {student.last_name}",
         "fees": [
@@ -107,6 +199,9 @@ def get_fee_status(student_id: str):
         ]
     }
 
+# --------------------------- #
+# 🔷 Get All Pending Students (Optional)
+# --------------------------- #
 @fees_router.get("/schools/{school_id}/pending")
 def get_pending_students(school_id: str):
     students = Student.objects(school_id=school_id)
@@ -114,9 +209,37 @@ def get_pending_students(school_id: str):
     for student in students:
         pending_terms = [fee.term_name for fee in student.fee_status if not fee.paid]
         if pending_terms:
-            pending_list.fees_routerend({
+            pending_list.append({
                 "student_id": str(student.id),
                 "name": f"{student.first_name} {student.last_name}",
                 "pending_terms": pending_terms
             })
     return pending_list
+
+
+@fees_router.get("/schools/{school_id}/paid")
+def get_paid_students(school_id: str):
+    students = Student.objects(school_id=school_id)
+    paid_list = []
+
+    for student in students:
+        paid_terms = [
+            {
+                "term_name": fee.term_name,
+                "amount": fee.amount_paid,
+                "paid_date": fee.paid_date
+            }
+            for fee in student.fee_status if fee.paid
+        ]
+        if paid_terms:
+            paid_list.append({
+                "student_id": str(student.id),
+                "name": f"{student.first_name} {student.last_name}",
+                "paid_terms": paid_terms
+            })
+
+    return {
+        "message": "Paid students retrieved successfully",
+        "data": paid_list,
+        "status": True
+    }

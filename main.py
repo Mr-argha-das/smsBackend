@@ -38,7 +38,7 @@ app.include_router(user_router, prefix="/api/user", tags=["User"])
 app.include_router(fees_router, prefix="/api/fees", tags=["Fees"])
 app.include_router(ai_router, prefix="/api/ai", tags=["AI Agent"])
 
-# import uvicorn
+import uvicorn
 
-# if __name__ == "__main__":
-#     uvicorn.run("main:app", port=8080, reload=True)
+if __name__ == "__main__":
+    uvicorn.run("main:app", port=8080, reload=True)

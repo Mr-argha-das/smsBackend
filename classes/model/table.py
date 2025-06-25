@@ -1,10 +1,14 @@
-from mongoengine import Document, StringField, DateTimeField, BooleanField, IntField, ReferenceField
+from mongoengine import Document, StringField, DateTimeField, BooleanField, IntField, ReferenceField, ListField, EmbeddedDocumentField
 from datetime import datetime
 
+from adminSchools.model.table import School
+from fees.models.feesTable import FeeTerm
+
 class Class(Document):
-    school_id = StringField(required=True)
+    school_id = ReferenceField(School, required=True)
     class_name = StringField(required=True)
     is_active = BooleanField(default=True)
+    fee_structure = ListField(EmbeddedDocumentField(FeeTerm))
 
     meta = {
         "collection": "class"
