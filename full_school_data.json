@@ -1,0 +1,1419 @@
+[
+  {
+    "schools": [
+      {
+        "_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "school_name": "Green Valley School",
+        "email": "admin@greenvalley.org",
+        "phone": "+1-555-987-6543",
+        "address": "456 Oak Avenue",
+        "city": "Austin",
+        "state": "TX",
+        "country": "USA",
+        "pincode": "73301",
+        "principal_name": "Mr. Robert Smith",
+        "number_of_students": 20,
+        "is_active": true,
+        "registered_at": "2025-06-26T07:31:00Z",
+        "image_url": "https://example.com/images/greenvalley.jpg",
+        "fee_structure": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      }
+    ],
+    "classes": {
+      "fess": [
+        {
+          "_id": "671a3b4c8f9d2e1c7a4b3c31",
+          "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+          "class_name": "Grade 1",
+          "is_active": true,
+          "fee_structure": [
+            {
+              "term_name": "Term 1",
+              "amount": 950.0,
+              "due_date": "2025-08-01T00:00:00Z"
+            },
+            {
+              "term_name": "Term 2",
+              "amount": 1150.0,
+              "due_date": "2025-11-01T00:00:00Z"
+            },
+            {
+              "term_name": "Term 3",
+              "amount": 1050.0,
+              "due_date": "2026-02-01T00:00:00Z"
+            }
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "_id": "671a3b4c8f9d2e1c7a4b3c35",
+          "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+          "section_name": "Section A",
+          "is_active": true
+        }
+      ]
+    },
+    "students": [
+      {
+        "_id": "2da93a68-44c2-4b93-9b67-02a1763e01b9",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Jason",
+        "last_name": "Hernandez",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_3688",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "aabb3c11-1282-4c73-9eea-0044b0387de4",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Amanda",
+        "last_name": "Herman",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_1516",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "be6eeab0-d2d1-49f0-a3dc-41692e0a2d67",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Albert",
+        "last_name": "Ward",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_7857",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "78d3cb71-302a-47d0-9354-a7cf0eebb438",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Cory",
+        "last_name": "Robinson",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_7730",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "dfbf9a06-fff2-4c35-9b70-a8fb647c3adf",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Michael",
+        "last_name": "Armstrong",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_7545",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "46eddf5e-ce77-4691-a0a2-2bb0c199a04f",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Keith",
+        "last_name": "Cummings",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_3664",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "ce47357b-0bd0-452a-8f51-025dea0f9f9c",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Justin",
+        "last_name": "Harris",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_3197",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "016956ed-5ae5-4f89-80d9-1c28e5c78e26",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Gordon",
+        "last_name": "Davis",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_3381",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "453c7eff-58b2-4425-b714-62a25ece4716",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "William",
+        "last_name": "Turner",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_8684",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "b19b31a3-6276-4655-8919-5ba8aae7d0a0",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Christine",
+        "last_name": "Sanders",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_1037",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "ad6755cc-5862-4dc6-ab33-28d932a38d3d",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Anthony",
+        "last_name": "Nguyen",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_3070",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "0ad65ad1-e847-46a3-aa90-6dee07b52a8f",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Carlos",
+        "last_name": "Green",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_1221",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "75c9fbbd-23d9-4821-bfe4-0084e8965527",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Tara",
+        "last_name": "Love",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_2766",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "bc41a67f-9645-4f79-b070-cf4d5a3d55bf",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Tracy",
+        "last_name": "Clark",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_8151",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "7ea200d3-2ca3-4689-91b4-630367270866",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Tyler",
+        "last_name": "Wilson",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_8114",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "0e34fa6f-3394-4988-90b3-c69d4647434f",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Jessica",
+        "last_name": "Osborne",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_3392",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "b0c39d92-5a2a-4114-a2b9-d9371dfda9a5",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Melissa",
+        "last_name": "Boyd",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_8040",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "c9efe387-d17d-4b53-babf-856c24a89abb",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Tara",
+        "last_name": "Hubbard",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_1720",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "73955d12-4ad2-4cc2-b430-00679712360d",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Jacob",
+        "last_name": "Lopez",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_8527",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "7d2a4915-574b-4afc-8d03-c37c57450ae0",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c31",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c35",
+        "first_name": "Heather",
+        "last_name": "Taylor",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2e_Grade 1_Section A_3798",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 950.0,
+            "due_date": "2025-08-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1150.0,
+            "due_date": "2025-11-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1050.0,
+            "due_date": "2026-02-01T00:00:00Z"
+          }
+        ]
+      }
+    ],
+    "school_users": [
+      {
+        "_id": "ed7207d9-6398-4bdc-a497-8f76462e0086",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "name": "Lisa Walsh",
+        "email": "rileycharles@booth.biz",
+        "phone": "739-990-9310",
+        "role": "Coordinator",
+        "subject": "Science",
+        "password": "@2Pn$xw(%2",
+        "is_active": true,
+        "created_at": "2025-06-26T08:06:27.615598Z"
+      },
+      {
+        "_id": "9d5a6b36-172c-4573-a3a5-fc49e2576395",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "name": "Joshua Aguilar",
+        "email": "sho@gmail.com",
+        "phone": "001-644-820-2356",
+        "role": "Librarian",
+        "subject": "English",
+        "password": "u!0dOChbvq",
+        "is_active": true,
+        "created_at": "2025-06-26T08:06:27.616119Z"
+      },
+      {
+        "_id": "4e443140-9579-4ab4-b533-0c5285e72fe9",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2e",
+        "name": "Daniel Knapp",
+        "email": "treese@hotmail.com",
+        "phone": "+1-163-926-7929x415",
+        "role": "Coordinator",
+        "subject": "English",
+        "password": "^Dg8ORgfV1",
+        "is_active": true,
+        "created_at": "2025-06-26T08:06:27.616570Z"
+      }
+    ]
+  },
+  {
+    "schools": [
+      {
+        "_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "school_name": "Sunny Hills Academy",
+        "email": "admin@sunnyhills.org",
+        "phone": "+1-555-123-4567",
+        "address": "789 Pine Street",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "USA",
+        "pincode": "98101",
+        "principal_name": "Ms. Emily Johnson",
+        "number_of_students": 25,
+        "is_active": true,
+        "registered_at": "2025-06-26T09:15:00Z",
+        "image_url": "https://example.com/images/sunnyhills.jpg",
+        "fee_structure": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      }
+    ],
+    "classes": {
+      "fess": [
+        {
+          "_id": "671a3b4c8f9d2e1c7a4b3c32",
+          "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+          "class_name": "Grade 2",
+          "is_active": true,
+          "fee_structure": [
+            {
+              "term_name": "Term 1",
+              "amount": 1000.0,
+              "due_date": "2025-08-15T00:00:00Z"
+            },
+            {
+              "term_name": "Term 2",
+              "amount": 1200.0,
+              "due_date": "2025-11-15T00:00:00Z"
+            },
+            {
+              "term_name": "Term 3",
+              "amount": 1100.0,
+              "due_date": "2026-02-15T00:00:00Z"
+            }
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "_id": "671a3b4c8f9d2e1c7a4b3c36",
+          "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+          "section_name": "Section B",
+          "is_active": true
+        }
+      ]
+    },
+    "students": [
+      {
+        "_id": "3ea94a69-45d3-4c94-9c68-03b1874f02c0",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c36",
+        "first_name": "Emma",
+        "last_name": "Thompson",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2f_Grade 2_Section B_1234",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "bbcc4d22-2393-4d84-9ffb-1155c1498ef5",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c36",
+        "first_name": "Liam",
+        "last_name": "Martinez",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2f_Grade 2_Section B_5678",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "cf7ffb1-3e3e-4af1-b4ed-527a36f13e78",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c36",
+        "first_name": "Olivia",
+        "last_name": "Brown",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2f_Grade 2_Section B_9012",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "89e4dc82-413b-48e1-a465-b8df1ffc9439",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c36",
+        "first_name": "Noah",
+        "last_name": "Garcia",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2f_Grade 2_Section B_3456",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "efcg0b07-0gg3-4d46-ac81-b9gc758d4beg",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c36",
+        "first_name": "Sophia",
+        "last_name": "Lee",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2f_Grade 2_Section B_7890",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "57feeg6f-dg88-4792-b1b3-3cc1f6ae561g",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c36",
+        "first_name": "James",
+        "last_name": "Wilson",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2f_Grade 2_Section B_2345",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "df58468c-0ce1-452b-9g52-136dfb1gagad",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c36",
+        "first_name": "Ava",
+        "last_name": "Davis",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2f_Grade 2_Section B_6789",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "127a57fe-6bf6-4g89-91ea-2d39f6dg4717",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c36",
+        "first_name": "William",
+        "last_name": "Anderson",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2f_Grade 2_Section B_0123",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "c2ac42b4-7394-4h45-c925-73b36fff5818",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c36",
+        "first_name": "Isabella",
+        "last_name": "Thomas",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2f_Grade 2_Section B_4567",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "c3bd53c5-84a5-5i56-dc36-84c47ggg6919",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c32",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c36",
+        "first_name": "Alexander",
+        "last_name": "Jackson",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c2f_Grade 2_Section B_8901",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 1000.0,
+            "due_date": "2025-08-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1200.0,
+            "due_date": "2025-11-15T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1100.0,
+            "due_date": "2026-02-15T00:00:00Z"
+          }
+        ]
+      }
+    ],
+    "school_users": [
+      {
+        "_id": "fe8308e0-74a9-4ced-b598-9g87573f1197",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "name": "Sarah Miller",
+        "email": "sarah.miller@sunnyhills.org",
+        "phone": "206-555-7890",
+        "role": "Teacher",
+        "subject": "Mathematics",
+        "password": "k#9mP$x2Qz",
+        "is_active": true,
+        "created_at": "2025-06-26T09:30:27.615598Z"
+      },
+      {
+        "_id": "ae6b7c47-283d-4684-b4b6-gd59f36874a6",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "name": "Michael Chen",
+        "email": "michael.chen@sunnyhills.org",
+        "phone": "206-555-2345",
+        "role": "Coordinator",
+        "subject": "Science",
+        "password": "v@1nYRhjW3",
+        "is_active": true,
+        "created_at": "2025-06-26T09:30:27.616119Z"
+      },
+      {
+        "_id": "5f554251-a68a-4bc5-c644-1e63a6f83gf0",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c2f",
+        "name": "Emily Davis",
+        "email": "emily.davis@sunnyhills.org",
+        "phone": "206-555-6789",
+        "role": "Librarian",
+        "subject": "English",
+        "password": "p!7xTZmKv8",
+        "is_active": true,
+        "created_at": "2025-06-26T09:30:27.616570Z"
+      }
+    ]
+  },
+  {
+    "schools": [
+      {
+        "_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "school_name": "Blue Ridge Academy",
+        "email": "admin@blueridge.org",
+        "phone": "+1-555-321-9876",
+        "address": "123 Maple Lane",
+        "city": "Denver",
+        "state": "CO",
+        "country": "USA",
+        "pincode": "80202",
+        "principal_name": "Dr. Susan Brown",
+        "number_of_students": 30,
+        "is_active": true,
+        "registered_at": "2025-06-26T10:45:00Z",
+        "image_url": "https://example.com/images/blueridge.jpg",
+        "fee_structure": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      }
+    ],
+    "classes": {
+      "fess": [
+        {
+          "_id": "671a3b4c8f9d2e1c7a4b3c33",
+          "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+          "class_name": "Grade 3",
+          "is_active": true,
+          "fee_structure": [
+            {
+              "term_name": "Term 1",
+              "amount": 900.0,
+              "due_date": "2025-09-01T00:00:00Z"
+            },
+            {
+              "term_name": "Term 2",
+              "amount": 1100.0,
+              "due_date": "2025-12-01T00:00:00Z"
+            },
+            {
+              "term_name": "Term 3",
+              "amount": 1000.0,
+              "due_date": "2026-03-01T00:00:00Z"
+            }
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "_id": "671a3b4c8f9d2e1c7a4b3c37",
+          "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+          "section_name": "Section C",
+          "is_active": true
+        }
+      ]
+    },
+    "students": [
+      {
+        "_id": "4fb95b70-56e4-4d95-ad79-14b2984g03d1",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c37",
+        "first_name": "Ethan",
+        "last_name": "Walker",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c30_Grade 3_Section C_4321",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "ccdd5e33-34a4-4e85-agfc-2266d25a9fg6",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c37",
+        "first_name": "Mia",
+        "last_name": "Rodriguez",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c30_Grade 3_Section C_8765",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "dg8ggc22-4f4f-4bg2-c5ge-637b47g14gh9",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c37",
+        "first_name": "Lucas",
+        "last_name": "Hernandez",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c30_Grade 3_Section C_2109",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "9af5ed93-524c-49f3-b576-c9eg36g25ai0",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c37",
+        "first_name": "Charlotte",
+        "last_name": "Moore",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c30_Grade 3_Section C_6543",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "fggh1c18-1hh4-4e57-ci87-dahc859e36bj",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c37",
+        "first_name": "Benjamin",
+        "last_name": "Taylor",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c30_Grade 3_Section C_0987",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "68fghh7g-ei88-4i93-d2c4-fbi2g7hf47ck",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c37",
+        "first_name": "Amelia",
+        "last_name": "White",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c30_Grade 3_Section C_5432",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "fg1i2d99-3jj5-4j04-e3e5-gcjd98ig58el",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c37",
+        "first_name": "Daniel",
+        "last_name": "Harris",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c30_Grade 3_Section C_9876",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "238b68ja-6kk6-4k15-f4f6-hdkea9jh69fm",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c37",
+        "first_name": "Harper",
+        "last_name": "Clark",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c30_Grade 3_Section C_3210",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "d4cc79kb-7ll7-4l26-g5g7-iekfbajk7agn",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c37",
+        "first_name": "Evelyn",
+        "last_name": "Lewis",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c30_Grade 3_Section C_7654",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "_id": "e5dd8alc-8mm8-4m37-h6h8-jflgbckl8bho",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "class_id": "671a3b4c8f9d2e1c7a4b3c33",
+        "section_id": "671a3b4c8f9d2e1c7a4b3c37",
+        "first_name": "Mason",
+        "last_name": "Young",
+        "roll_number": "671a3b4c8f9d2e1c7a4b3c30_Grade 3_Section C_1098",
+        "is_active": true,
+        "fee_status": [
+          {
+            "term_name": "Term 1",
+            "amount": 900.0,
+            "due_date": "2025-09-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 2",
+            "amount": 1100.0,
+            "due_date": "2025-12-01T00:00:00Z"
+          },
+          {
+            "term_name": "Term 3",
+            "amount": 1000.0,
+            "due_date": "2026-03-01T00:00:00Z"
+          }
+        ]
+      }
+    ],
+    "school_users": [
+      {
+        "_id": "gf9i19me-9nn9-4n48-i7i9-kgmhcglm9cip",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "name": "James Carter",
+        "email": "james.carter@blueridge.org",
+        "phone": "303-555-1234",
+        "role": "Teacher",
+        "subject": "History",
+        "password": "z@3qWThmX9",
+        "is_active": true,
+        "created_at": "2025-06-26T10:45:27.615598Z"
+      },
+      {
+        "_id": "bf7j2anf-0oo0-4o59-j8j0-lhniadmn0djq",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "name": "Laura Adams",
+        "email": "laura.adams@blueridge.org",
+        "phone": "303-555-5678",
+        "role ":"Teacher",
+        "subject": "Mathematics",
+        "password": "r#5eYUkNp2",
+        "is_active": true,
+        "created_at": "2025-06-26T10:45:27.616119Z"
+      },
+      {
+        "_id": "6g8k3bog-1pp1-4p60-k9k1-miojbeno1ekr",
+        "school_id": "671a3b4c8f9d2e1c7a4b3c30",
+        "name": "Rachel Lee",
+        "email": "rachel.lee@blueridge.org",
+        "phone": "303-555-9012",
+        "role": "Coordinator",
+        "subject": "English",
+        "password": "t!8vZRjQw4",
+        "is_active": true,
+        "created_at": "2025-06-26T10:45:27.616570Z"
+      }
+    ]
+  }
+]
+
