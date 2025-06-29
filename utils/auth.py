@@ -4,6 +4,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 
 from adminSchools.model.table import School
+from students.model.student import Student
 from users.models.table import User
 
 # Secret key to encode the JWT
@@ -69,9 +70,8 @@ def create_client(ip: str = Form(...)):
 @client_router.post("/login")
 def login(
     form_data: OAuth2PasswordRequestForm = Depends(),
-
 ):
-    # Check client credentials
+    # 1. Check client credentials
     client = ClientApp.objects(client_id=form_data.client_id, client_secret=form_data.client_secret).first()
     if not client:
         raise HTTPException(status_code=401, detail="Invalid client credentials")
@@ -79,7 +79,7 @@ def login(
     email = form_data.username
     password = form_data.password
 
-    # School Login
+    # 2. School Login
     school = School.objects(email=email, is_active=True).first()
     if school and school.phone == password:
         token = create_access_token({"sub": email, "type": "school", "id": str(school.id)})
@@ -91,7 +91,7 @@ def login(
             "message": "School login success"
         }
 
-    # User Login
+    # 3. User Login
     user = User.objects(email=email, password=password, is_active=True).first()
     if user:
         token = create_access_token({
@@ -109,4 +109,30 @@ def login(
             "message": "User login success"
         }
 
+    # 4. Student Login
+    student = Student.objects(
+        is_active=True,
+        __raw__={
+            "$or": [{"email": email}, {"guardian_email": email}],
+            "$or": [{"phone": password}, {"guardian_phone": password}]
+        }
+    ).first()
+
+    if student:
+        token = create_access_token({
+            "sub": email,
+            "type": "student",
+            "id": str(student.id),
+            "school_id": str(student.school_id.id)
+        })
+        return {
+            "access_token": token,
+            "token_type": "bearer",
+            "type": "student",
+            "id": str(student.id),
+            "school_id": str(student.school_id.id),
+            "message": "Student login success"
+        }
+
+    # If no match found
     raise HTTPException(status_code=401, detail="Invalid credentials")
