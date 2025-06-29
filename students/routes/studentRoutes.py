@@ -2,10 +2,11 @@ import os
 import shutil
 import json
 from datetime import datetime
-from fastapi import APIRouter, HTTPException, UploadFile, File, Form, Query
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form, Query
 from students.model.student import Student
 from adminSchools.model.table import School
 from classes.model.table import Class, Section
+from utils.auth import get_current_user
 
 student_router = APIRouter()
 UPLOAD_DIR = "uploads/students/"
@@ -14,6 +15,7 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 # Add Student
 @student_router.post("/add-student")
 async def add_student(
+    current_user: dict = Depends(get_current_user),
     school_id: str = Form(...),
     class_id: str = Form(...),
     section_id: str = Form(...),
@@ -76,7 +78,7 @@ async def add_student(
 
 # Get All Students with optional school_id filter
 @student_router.get("/get-all-students")
-def get_all_students(school_id: str = Query(None)):
+def get_all_students(school_id: str = Query(None), current_user: dict = Depends(get_current_user),):
     if school_id:
         students = Student.objects(school_id=school_id)
     else:
@@ -92,7 +94,7 @@ def get_all_students(school_id: str = Query(None)):
 
 # Get Student By ID
 @student_router.get("/get-student/{student_id}")
-def get_student(student_id: str):
+def get_student(student_id: str, current_user: dict = Depends(get_current_user),):
     student = Student.objects(id=student_id).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
@@ -105,7 +107,7 @@ def get_student(student_id: str):
 
 # Update Student
 @student_router.put("/update-student/{student_id}")
-def update_student(student_id: str, payload: dict):
+def update_student(student_id: str, payload: dict, current_user: dict = Depends(get_current_user),):
     student = Student.objects(id=student_id).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
@@ -114,7 +116,7 @@ def update_student(student_id: str, payload: dict):
 
 # Deactivate Student
 @student_router.put("/deactivate-student/{student_id}")
-def deactivate_student(student_id: str):
+def deactivate_student(student_id: str, current_user: dict = Depends(get_current_user),):
     student = Student.objects(id=student_id).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
@@ -124,7 +126,7 @@ def deactivate_student(student_id: str):
 
 # Get Students by Class
 @student_router.get("/get-students-by-class/{class_id}")
-def get_students_by_class(class_id: str):
+def get_students_by_class(class_id: str, current_user: dict = Depends(get_current_user),):
     students = Student.objects(class_id=class_id)
     data = json.loads(students.to_json())
     for s in data:
@@ -133,7 +135,7 @@ def get_students_by_class(class_id: str):
 
 # Get Students by Section
 @student_router.get("/get-students-by-section/{section_id}")
-def get_students_by_section(section_id: str):
+def get_students_by_section(section_id: str, current_user: dict = Depends(get_current_user),):
     students = Student.objects(section_id=section_id)
     data = json.loads(students.to_json())
     for s in data:
@@ -142,7 +144,7 @@ def get_students_by_section(section_id: str):
 
 # Student Login with static OTP
 @student_router.post("/login")
-def login_with_otp(phone: str = Form(...), otp: str = Form(...)):
+def login_with_otp(phone: str = Form(...), otp: str = Form(...),):
     student = Student.objects(phone=phone).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")

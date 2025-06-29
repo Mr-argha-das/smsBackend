@@ -12,6 +12,7 @@ user_router = APIRouter()
 
 @user_router.post("/add-user")
 def add_user(
+    current_user: dict = Depends(get_current_user),
     school_id: str = Form(...),
     name: str = Form(...),
     email: str = Form(...),
@@ -19,6 +20,7 @@ def add_user(
     password: str = Form(...),
     subject: str = Form(...),
     role_id: str = Form(...)
+    
 ):
     school = School.objects(id=school_id).first()
     role = Role.objects(id=role_id).first()
@@ -44,7 +46,7 @@ def add_user(
 
 
 @user_router.get("/get-users")
-def get_users(school_id: str = Query(...)):
+def get_users(school_id: str = Query(...),current_user: dict = Depends(get_current_user),):
     users = User.objects(school_id=school_id)
     data = json.loads(users.to_json())
     for u in data:
@@ -55,7 +57,7 @@ def get_users(school_id: str = Query(...)):
 
 # Delete user by id (soft delete by default)
 @user_router.delete("/delete-user/{user_id}")
-def delete_user(user_id: str):
+def delete_user(user_id: str, current_user: dict = Depends(get_current_user),):
     user = User.objects(id=user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")

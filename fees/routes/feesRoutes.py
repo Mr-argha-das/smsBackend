@@ -2,13 +2,14 @@ from datetime import datetime
 import os
 import shutil
 from typing import List
-from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel
 from adminSchools.model.table import School
 from classes.model.table import Class, Section
 from students.model.student import Student
 from students.model.fees_status import FeePaymentStatus
 from fees.models.feesTable import FeeTerm
+from utils.auth import get_current_user
 
 fees_router = APIRouter()
 
@@ -49,7 +50,7 @@ class StudentCreateSchema(BaseModel):
 # 🔷 Set Fee Structure (Per Class)
 # --------------------------- #
 @fees_router.post("/class/{class_id}/fees")
-def set_class_fee_structure(class_id: str, terms: List[FeeTermSchema]):
+def set_class_fee_structure(class_id: str, terms: List[FeeTermSchema], current_user: dict = Depends(get_current_user),):
     cls = Class.objects(id=class_id).first()
     if not cls:
         raise HTTPException(status_code=404, detail="Class not found")
@@ -110,7 +111,8 @@ async def add_student(
     guardian_email: str = Form(""),
     guardian_phone: str = Form(...),
     guardian_relation: str = Form("Parent"),
-    image: UploadFile = File(None)
+    image: UploadFile = File(None),
+    current_user: dict = Depends(get_current_user),
 ):
     # Validate references
     school = School.objects(id=school_id).first()
@@ -161,7 +163,7 @@ async def add_student(
 # 🔷 Pay Fee
 # --------------------------- #
 @fees_router.post("/students/{student_id}/pay")
-def pay_term_fee(student_id: str, term_name: str, amount: float):
+def pay_term_fee(student_id: str, term_name: str, amount: float, current_user: dict = Depends(get_current_user),):
     student = Student.objects(id=student_id).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
@@ -182,7 +184,7 @@ def pay_term_fee(student_id: str, term_name: str, amount: float):
 # 🔷 Get Fee Status for Student
 # --------------------------- #
 @fees_router.get("/students/{student_id}/fees")
-def get_fee_status(student_id: str):
+def get_fee_status(student_id: str, current_user: dict = Depends(get_current_user),):
     student = Student.objects(id=student_id).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
@@ -203,7 +205,7 @@ def get_fee_status(student_id: str):
 # 🔷 Get All Pending Students (Optional)
 # --------------------------- #
 @fees_router.get("/schools/{school_id}/pending")
-def get_pending_students(school_id: str):
+def get_pending_students(school_id: str, current_user: dict = Depends(get_current_user),):
     students = Student.objects(school_id=school_id)
     pending_list = []
     for student in students:
@@ -218,7 +220,7 @@ def get_pending_students(school_id: str):
 
 
 @fees_router.get("/schools/{school_id}/paid")
-def get_paid_students(school_id: str):
+def get_paid_students(school_id: str, current_user: dict = Depends(get_current_user),):
     students = Student.objects(school_id=school_id)
     paid_list = []
 

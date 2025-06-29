@@ -5,6 +5,8 @@ from role.model.table import Role
 from adminSchools.model.table import School
 from fastapi.security import OAuth2PasswordRequestForm
 
+from utils.auth import get_current_user
+
 role_router = APIRouter()
 
 # Add a new Role with permissions
@@ -12,6 +14,7 @@ role_router = APIRouter()
 def add_role(
     name: str = Form(...),
     permissions: list[str] = Form(...)
+    ,current_user: dict = Depends(get_current_user),
 ):
     if Role.objects(name=name).first():
         raise HTTPException(status_code=400, detail="Role already exists")
@@ -21,6 +24,6 @@ def add_role(
 
 # Get all roles
 @role_router.get("/get-roles")
-def get_roles():
+def get_roles(current_user: dict = Depends(get_current_user),):
     roles = Role.objects.all()
     return {"data": json.loads(roles.to_json())}

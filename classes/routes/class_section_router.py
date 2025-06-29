@@ -36,7 +36,7 @@ def add_class(
 
 @class_section_router.post("/add-section")
 def add_section(
-   
+    current_user: dict = Depends(get_current_user),
     class_id: str = Form(...),
     section_name: str = Form(...)
 ):
@@ -78,7 +78,7 @@ def get_classes(current_user: dict = Depends(get_current_user),):
     }
 
 @class_section_router.get("/get-sections/{class_id}")
-def get_sections(class_id: str):
+def get_sections(class_id: str, current_user: dict = Depends(get_current_user),):
     sections = Section.objects(class_id=class_id)
     section_list = json.loads(sections.to_json())
 
@@ -93,7 +93,7 @@ def get_sections(class_id: str):
     }
 
 @class_section_router.put("/deactivate-class/{class_id}")
-def deactivate_class(class_id: str):
+def deactivate_class(class_id: str, current_user: dict = Depends(get_current_user),):
     cls = Class.objects(id=class_id).first()
     if not cls:
         raise HTTPException(status_code=404, detail="Class not found.")
@@ -104,7 +104,7 @@ def deactivate_class(class_id: str):
     return {"message": "Class deactivated", "status": True}
 
 @class_section_router.put("/deactivate-section/{section_id}")
-def deactivate_section(section_id: str):
+def deactivate_section(section_id: str, current_user: dict = Depends(get_current_user),):
     section = Section.objects(id=section_id).first()
     if not section:
         raise HTTPException(status_code=404, detail="Section not found.")
