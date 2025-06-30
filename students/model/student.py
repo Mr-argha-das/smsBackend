@@ -3,6 +3,8 @@ from datetime import datetime
 from classes.model.table import Class, Section
 from adminSchools.model.table import School
 from .fees_status import FeePaymentStatus
+
+
 class Student(Document):
     school_id = ReferenceField(School, required=True)
     class_id = ReferenceField(Class, required=True)

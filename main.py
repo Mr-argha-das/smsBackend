@@ -16,7 +16,7 @@ import os
 app = FastAPI()
 
 # MongoDB connect
-connect('smsTest', host="mongodb+srv://avbigbuddy:nZ4ATPTwJjzYnm20@cluster0.wplpkxz.mongodb.net/smsTest")
+connect('smsTest2', host="mongodb+srv://avbigbuddy:nZ4ATPTwJjzYnm20@cluster0.wplpkxz.mongodb.net/smsTest2")
 # Allow CORS (for frontend like Flutter or React)
 app.add_middleware(
     CORSMiddleware,
@@ -47,4 +47,4 @@ app.include_router(agent_router, prefix="/api/ai", tags=["ai"])
 import uvicorn
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=8080, reload=True)
+    uvicorn.run("main:app", port=8080, reload=True)zz
