@@ -7,7 +7,7 @@ from classes.routes.class_section_router import class_section_router
 from students.routes.studentRoutes import student_router
 from role.routes.roleRoutes import role_router
 from users.routes.userRoutes import user_router
-
+from agent.routes.agent_routes import agent_router
 from fees.routes.feesRoutes import fees_router;
 from utils.auth import client_router
 from fastapi.openapi.utils import get_openapi
@@ -41,6 +41,7 @@ app.include_router(student_router, prefix="/api/student", tags=["Student Login"]
 app.include_router(role_router, prefix="/api/role", tags=["User Role"])
 app.include_router(user_router, prefix="/api/user", tags=["User"])
 app.include_router(fees_router, prefix="/api/fees", tags=["Fees"])
+app.include_router(agent_router, prefix="/api/ai", tags=["ai"])
 # app.include_router(ai_router, prefix="/api/ai", tags=["AI Agent"])
 
 import uvicorn
