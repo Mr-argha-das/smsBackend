@@ -3,9 +3,11 @@ from fastapi import APIRouter, Depends, Form, HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 
-from adminSchools.model.table import School
-from students.model.student import Student
-from users.models.table import User
+from app.models.school import School
+from app.models.student import Student
+from app.models.user import User
+
+
 
 # Secret key to encode the JWT
 SECRET_KEY = "xGdP7OaSl7Vw6ZgY3MfgJ8cHjOFlwChV-3EKJpBx5uY"  # use a strong, random key

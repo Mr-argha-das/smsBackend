@@ -1,6 +1,6 @@
 from mongoengine import Document, StringField, DateTimeField, BooleanField, IntField,EmbeddedDocumentField, ListField
 from datetime import datetime
-from fess import FeeTerm
+from .fess import FeeTerm
 class School(Document):
     school_name = StringField(required=True)
     email = StringField(required=True, unique=True)

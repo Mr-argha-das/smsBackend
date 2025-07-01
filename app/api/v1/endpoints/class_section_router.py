@@ -1,7 +1,7 @@
 import json
 from fastapi import APIRouter, Depends, HTTPException, Form
 from bson import ObjectId
-from services.class_services import add_class_service, add_section_service, get_class_service,get_section_service,deactivate_class_service, deactivate_section_service
+from app.services.class_services import add_class_service, add_section_service, get_class_service,get_section_service,deactivate_class_service, deactivate_section_service
 from app.schema.auth import get_current_user
 
 class_section_router = APIRouter()

@@ -11,7 +11,7 @@ from sklearn.metrics import classification_report
 from sklearn.pipeline import Pipeline
 
 # Load fine-tuned spaCy NER model
-nlp = spacy.load("agent/student_ner_model")
+nlp = spacy.load("app/utils/student_ner_model")
 
 offensive_keywords = {"idiot", "stupid", "nonsense", "chutiya"}
 

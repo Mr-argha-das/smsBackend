@@ -3,8 +3,10 @@ from bson import ObjectId, json_util
 from mongoengine.queryset.visitor import Q
 from mongoengine import connect
 
-from students.model.student import Student
-from classes.model.table import Section, Class
+from app.models.classes import Class, Section
+from app.models.student import Student
+
+
 
 
 

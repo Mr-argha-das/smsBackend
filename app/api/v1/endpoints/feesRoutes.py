@@ -4,12 +4,7 @@ import shutil
 from typing import List
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel
-from adminSchools.model.table import School
 from app.services.fess_services import FeeTermSchema, get_paid_students_service, get_pending_students_service, pay_term_fee_service, set_class_fee_structure_service, add_student_service,get_fee_status_service
-from classes.model.table import Class, Section
-from students.model.student import Student
-from students.model.fees_status import FeePaymentStatus
-from fees.models.feesTable import FeeTerm
 from app.schema.auth import get_current_user
 
 fees_router = APIRouter()

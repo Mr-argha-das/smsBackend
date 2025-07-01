@@ -1,5 +1,5 @@
 from mongoengine import Document, StringField, DateField, ReferenceField
-from student import Student
+from .student import Student
 
 class Attendance(Document):
     student = ReferenceField(Student, required=True)

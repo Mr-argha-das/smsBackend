@@ -1,7 +1,9 @@
 from mongoengine import Document, StringField, ReferenceField, BooleanField, DateTimeField
 from datetime import datetime
-from adminSchools.model.table import School
-from role.model.table import Role
+
+from app.models.role import Role
+from app.models.school import School
+
 
 class User(Document):
     school_id = ReferenceField(School, required=True)

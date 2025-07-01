@@ -1,7 +1,7 @@
 import json
 
 from fastapi import HTTPException
-from models.classes import Class, Section
+from app.models.classes import Class, Section
 from bson import ObjectId
 
 

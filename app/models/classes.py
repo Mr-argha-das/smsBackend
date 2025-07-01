@@ -1,8 +1,8 @@
 from mongoengine import Document, StringField, DateTimeField, BooleanField, IntField, ReferenceField, ListField, EmbeddedDocumentField
 from datetime import datetime
 
-from school import School
-from fess import FeeTerm
+from .school import School
+from .fess import FeeTerm
 
 class Class(Document):
     school_id = ReferenceField(School, required=True)

@@ -1,8 +1,7 @@
 import json
 from fastapi import APIRouter, HTTPException, Form, Depends
 from mongoengine import DoesNotExist
-from role.model.table import Role
-from adminSchools.model.table import School
+from app.services.role_service import add_role_service,get_role_service
 from fastapi.security import OAuth2PasswordRequestForm
 
 from app.schema.auth import get_current_user
@@ -13,17 +12,14 @@ role_router = APIRouter()
 @role_router.post("/add-role")
 def add_role(
     name: str = Form(...),
-    permissions: list[str] = Form(...)
-    ,current_user: dict = Depends(get_current_user),
+    permissions: list[str] = Form(...),
+    school_id: str = Form(...),
+    current_user: dict = Depends(get_current_user),
 ):
-    if Role.objects(name=name).first():
-        raise HTTPException(status_code=400, detail="Role already exists")
-    role = Role(name=name, permissions=permissions)
-    role.save()
-    return {"message": "Role created", "id": str(role.id)}
+    return add_role_service(name=name, permissions=permissions, school_id=school_id)
 
 # Get all roles
-@role_router.get("/get-roles")
-def get_roles(current_user: dict = Depends(get_current_user),):
-    roles = Role.objects.all()
-    return {"data": json.loads(roles.to_json())}
+@role_router.get("/get-roles/{schoolid}")
+def get_roles(schoolid:str, current_user: dict = Depends(get_current_user),):
+
+    return get_role_service(schoolid=schoolid)

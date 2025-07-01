@@ -1,17 +1,19 @@
 from fastapi import FastAPI
 from mongoengine import connect
-from adminSchools.routes.school import school_router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from classes.routes.class_section_router import class_section_router
-from students.routes.studentRoutes import student_router
-from role.routes.roleRoutes import role_router
-from users.routes.userRoutes import user_router
-from agent.routes.agent_routes import agent_router
-from fees.routes.feesRoutes import fees_router;
+from app.api.v1.endpoints.aiRoutes import agent_router
+from app.api.v1.endpoints.class_section_router import class_section_router
+from app.api.v1.endpoints.feesRoutes import fees_router
+from app.api.v1.endpoints.roleRoutes import role_router
+from app.api.v1.endpoints.schoolRoutes import school_router
+from app.api.v1.endpoints.studentRoutes import student_router
+from app.api.v1.endpoints.userRoutes import user_router
 from app.schema.auth import client_router
 from fastapi.openapi.utils import get_openapi
 import os
+
+from app.services import students_service
 
 app = FastAPI()
 

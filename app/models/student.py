@@ -1,8 +1,8 @@
 from mongoengine import Document, StringField, DateTimeField, BooleanField, ReferenceField, EmbeddedDocumentField, ListField
 from datetime import datetime
-from classes import Class, Section
-from school import School
-from fess_status import FeePaymentStatus
+from .classes import Class, Section
+from .school import School
+from .fess_status import FeePaymentStatus
 
 
 class Student(Document):
