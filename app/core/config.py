@@ -6,13 +6,14 @@ import os
 
 class BaseAppSettings(BaseSettings):
     app_name: str = "ERP App"
-    app_port: int = 8080
+    app_port: int = Field(..., env="APP_PORT")
+    app_host: str = Field(..., env="APP_HOST")
     debug: bool = True
     environment: Literal["dev", "prod"] = Field("dev", env="ENVIRONMENT")
-
+    
     mongo_uri: str = Field(..., env="MONGO_URI")
     mongo_db_name: str = Field(..., env="MONGO_DB_NAME")
-
+    
     allowed_hosts: List[str] = ["*"]
     allowed_origins: List[str] = ["*"]
 

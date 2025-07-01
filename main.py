@@ -44,4 +44,4 @@ app.include_router(fees_router, prefix="/api/fees", tags=["Fees"])
 app.include_router(agent_router, prefix="/api/ai", tags=["AI"])
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=settings.app_port, reload=settings.debug)
+    uvicorn.run("main:app", host=settings.app_host, port=settings.app_port, reload=settings.debug)
