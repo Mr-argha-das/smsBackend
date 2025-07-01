@@ -3,7 +3,7 @@ from agent.data_handler.handler_data import functionSelector, get_student_info
 from agent.model.script import StudentInfoModel
 from fastapi import APIRouter, Depends, Form
 
-from utils.auth import get_current_user
+from app.schema.auth import get_current_user
 model = StudentInfoModel()
 model.load_model("agent/pkl/student_info_model.pkl")
 

@@ -9,7 +9,7 @@ from role.routes.roleRoutes import role_router
 from users.routes.userRoutes import user_router
 from agent.routes.agent_routes import agent_router
 from fees.routes.feesRoutes import fees_router;
-from utils.auth import client_router
+from app.schema.auth import client_router
 from fastapi.openapi.utils import get_openapi
 import os
 
@@ -47,4 +47,4 @@ app.include_router(agent_router, prefix="/api/ai", tags=["ai"])
 import uvicorn
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=8080, reload=True)zz
+    uvicorn.run("main:app", port=8080, reload=True)
