@@ -5,7 +5,7 @@ from typing import List, Literal
 import os
 
 class BaseAppSettings(BaseSettings):
-    app_name: str = "ERP App"
+    app_name: str = "Aithena"
     app_port: int = Field(..., env="APP_PORT")
     app_host: str = Field(..., env="APP_HOST")
     debug: bool = True
