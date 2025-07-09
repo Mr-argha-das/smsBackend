@@ -14,6 +14,7 @@ from app.api.v1.endpoints.schoolRoutes import school_router
 from app.api.v1.endpoints.studentRoutes import student_router
 from app.api.v1.endpoints.userRoutes import user_router
 from app.schema.auth import client_router
+from app.api.v1.endpoints.attendance import attendanceRouter
 
 import os
 import uvicorn
@@ -41,7 +42,9 @@ app.include_router(student_router, prefix="/api/student", tags=["Student Login"]
 app.include_router(role_router, prefix="/api/role", tags=["User Role"])
 app.include_router(user_router, prefix="/api/user", tags=["User"])
 app.include_router(fees_router, prefix="/api/fees", tags=["Fees"])
+app.include_router(attendanceRouter, prefix="/api/attendance", tags=["Attendance"])
 app.include_router(agent_router, prefix="/api/ai", tags=["AI"])
+
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host=settings.app_host, port=settings.app_port, reload=settings.debug)
