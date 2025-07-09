@@ -1,4 +1,4 @@
-from fastapi import  HTTPException, APIRouter
+from fastapi import  Depends, HTTPException, APIRouter
 from app.models.student import Student
 from app.models.attendance import Attendance
 from app.models.holiday import Holiday
@@ -7,6 +7,8 @@ from datetime import date
 from bson import ObjectId
 from mongoengine.errors import NotUniqueError
 from collections import defaultdict
+
+from app.schema.auth import get_current_user
 attendanceRouter = APIRouter()
 
 class StudentIn(BaseModel):
@@ -27,7 +29,7 @@ class HolidayIn(BaseModel):
 
 
 @attendanceRouter.post("/mark")
-def mark_attendance(att: AttendanceIn):
+def mark_attendance(att: AttendanceIn, current_user: dict = Depends(get_current_user),):
     if Holiday.objects(date=att.date).first():
         raise HTTPException(status_code=400, detail="Cannot mark attendance on holiday")
 
@@ -42,7 +44,7 @@ def mark_attendance(att: AttendanceIn):
     return {"message": "Attendance marked"}
 
 @attendanceRouter.get("/{student_id}")
-def get_attendance(student_id: str):
+def get_attendance(student_id: str, current_user: dict = Depends(get_current_user),):
     student = Student.objects.get(id=ObjectId(student_id)).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
@@ -53,19 +55,19 @@ def get_attendance(student_id: str):
     ]}
 
 @attendanceRouter.post("/holiday/add")
-def add_holiday(holiday: HolidayIn):
+def add_holiday(holiday: HolidayIn, current_user: dict = Depends(get_current_user),):
     if Holiday.objects(date=holiday.date).first():
         raise HTTPException(status_code=400, detail="Holiday already exists")
     Holiday(**holiday.dict()).save()
     return {"message": "Holiday added"}
 
 @attendanceRouter.get("/holiday/list/{school_id}")
-def get_holidays(school_id: str):
+def get_holidays(school_id: str, current_user: dict = Depends(get_current_user),):
     holidays = Holiday.objects(schoolId=school_id)
     return [{"date": str(h.date), "reason": h.reason} for h in holidays]
 
 @attendanceRouter.get("/report/{student_id}")
-def attendance_report(student_id: str, start_date: date, end_date: date):
+def attendance_report(student_id: str, start_date: date, end_date: date, current_user: dict = Depends(get_current_user),):
     student = Student.objects(student_id=student_id).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
