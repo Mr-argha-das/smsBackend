@@ -122,3 +122,10 @@ def filter_results(
     if not results:
         raise HTTPException(status_code=404, detail="No results found with given filters")
     return [r.to_mongo().to_dict() for r in results]
+
+@result_router.get("/results/star-students")
+def get_star_students_by_school(school_id: str, min_percentage: float = 90.0):
+    results = StudentResult.objects(school_id=school_id, percentage__gte=min_percentage)
+    if not results:
+        raise HTTPException(status_code=404, detail="No star students found for this school")
+    return [r.to_mongo().to_dict() for r in results]

@@ -17,6 +17,7 @@ from app.api.v1.endpoints.attendance import attendanceRouter
 from app.api.v1.endpoints.subjects_routes import subject_router
 from app.api.v1.endpoints.communication_notification_Routes import communication_router
 from app.api.v1.endpoints.student_result import result_router
+from app.api.v1.endpoints.timetable_routes import timeTableRoutes
 
 
 from app.schema.auth import client_router
@@ -47,6 +48,7 @@ app.include_router(class_section_router, prefix="/api/class-section", tags=["Cla
 app.include_router(student_router, prefix="/api/student", tags=["Student Login"])
 app.include_router(subject_router, prefix="/api/subject", tags=["subject"])
 app.include_router(result_router, prefix="/api/exam", tags=["Exams / Result"])
+app.include_router(timeTableRoutes, prefix="/api/timetable", tags=["Time Table"])
 app.include_router(role_router, prefix="/api/role", tags=["User Role"])
 app.include_router(user_router, prefix="/api/user", tags=["User"])
 app.include_router(fees_router, prefix="/api/fees", tags=["Fees"])
