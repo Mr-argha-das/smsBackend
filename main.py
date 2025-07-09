@@ -15,9 +15,8 @@ from app.api.v1.endpoints.studentRoutes import student_router
 from app.api.v1.endpoints.userRoutes import user_router
 from app.api.v1.endpoints.attendance import attendanceRouter
 from app.api.v1.endpoints.subjects_routes import subject_router
-
 from app.api.v1.endpoints.communication_notification_Routes import communication_router
-
+from app.api.v1.endpoints.student_result import result_router
 
 
 from app.schema.auth import client_router
@@ -45,15 +44,17 @@ app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 app.include_router(client_router, prefix="/api/auth", tags=["Auth"])
 app.include_router(school_router, prefix="/api/school", tags=["School"])
 app.include_router(class_section_router, prefix="/api/class-section", tags=["Class & Section"])
-app.include_router(subject_router, prefix="/api/subject", tags=["subject"])
 app.include_router(student_router, prefix="/api/student", tags=["Student Login"])
+app.include_router(subject_router, prefix="/api/subject", tags=["subject"])
+app.include_router(result_router, prefix="/api/exam", tags=["Exams / Result"])
 app.include_router(role_router, prefix="/api/role", tags=["User Role"])
 app.include_router(user_router, prefix="/api/user", tags=["User"])
 app.include_router(fees_router, prefix="/api/fees", tags=["Fees"])
 app.include_router(attendanceRouter, prefix="/api/attendance", tags=["Attendance"])
+app.include_router(communication_router, prefix="/api/ai",tags=["Communication"])
 app.include_router(agent_router, prefix="/api/ai", tags=["AI"])
 
-app.include_router(communication_router, prefix="/api/ai",tags=["Communication"])
+
 
 
 if __name__ == "__main__":
