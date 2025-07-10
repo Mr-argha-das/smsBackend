@@ -69,6 +69,7 @@ async def register_school_with_image_service(
 
 async def get_all_schools_service():
     schools_data = School.objects.all()
+    print(schools_data)
     fromjson = json.loads(schools_data.to_json())
     return {
         "message": "Here is the full list of schools",
