@@ -1,7 +1,7 @@
 from mongoengine import (
     Document, StringField, ReferenceField, DateTimeField,
     ListField, EmbeddedDocument, EmbeddedDocumentField,
-    FloatField, IntField, DictField
+    FloatField, IntField, DictField, BooleanField
 )
 from datetime import datetime
 from .school import School
@@ -59,3 +59,22 @@ class StudentResult(Document):
     def save(self, *args, **kwargs):
         self.updated_at = datetime.utcnow()
         return super().save(*args, **kwargs)
+
+
+
+class AcademicTerm(Document):
+    school_id = ReferenceField(School, required=True)
+    name = StringField(required=True)  # e.g., "Term 1", "Final Exam"
+    academic_year = StringField(required=True)  # e.g., "2023-2024"
+    start_date = DateTimeField(required=True)
+    end_date = DateTimeField(required=True)
+    weightage = FloatField(default=1.0)  # For calculating final grades
+    is_active = BooleanField(default=True)
+    created_at = DateTimeField(default=datetime.utcnow)
+
+    meta = {
+        "collection": "academic_terms",
+        "indexes": [
+            {"fields": ["school_id", "academic_year", "name"], "unique": True}
+        ]
+    }

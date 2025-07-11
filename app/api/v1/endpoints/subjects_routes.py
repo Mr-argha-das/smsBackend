@@ -13,9 +13,9 @@ def create_subject(data: SubjectCreate,  current_user: dict = Depends(get_curren
     subject.save()
     return SubjectResponse(id=str(subject.id), **data.dict(), created_at=subject.created_at, updated_at=subject.updated_at)
 
-@subject_router.get("/", response_model=List[SubjectResponse])
-def get_all_subjects( current_user: dict = Depends(get_current_user),):
-    subjects = Subject.objects()
+@subject_router.get("/{class_id}", response_model=List[SubjectResponse])
+def get_all_subjects(  class_id: str, current_user: dict = Depends(get_current_user),):
+    subjects = Subject.objects(class_id=class_id).all()
     return [SubjectResponse(
         id=str(sub.id),
         school_id=str(sub.school_id.id),

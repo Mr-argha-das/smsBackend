@@ -24,6 +24,8 @@ from app.api.v1.endpoints.academicPerformanceAnalyticsModule import academicPerf
 from app.api.v1.endpoints.attendance_report_router import attendanceAnalytcsModule
 from app.api.v1.endpoints.feeCollectionAnalytics import feesAnalytcs
 from app.api.v1.endpoints.book_routes import booksRouter
+from app.api.v1.endpoints.inventroy_routes import inventoryRouter
+from app.api.v1.endpoints.hostel_routes import hostelRouter
 from app.schema.auth import client_router
 
 import os
@@ -62,8 +64,11 @@ app.include_router(studentRouterModule, prefix="/api/report/students", tags=["St
 app.include_router(academicPerformanceAnalyticsModule, prefix="/api/academic-performance", tags=["Academic Performance Analytics Module"])
 app.include_router(attendanceAnalytcsModule, prefix="/api/attendance-analytcs", tags=["Attendance Analytics Module"])
 app.include_router(feesAnalytcs, prefix="/api/feesAnalytcs", tags=["Fee Collection Analytics"])
-app.include_router(booksRouter, prefix="/api/librray", tags=["Librray Managment"])
+app.include_router(booksRouter, prefix="/api/librray", tags=["Librray Managment module"])
+app.include_router(inventoryRouter, prefix="/api/inventory", tags=["Inventory Managment "])
 app.include_router(communication_router, prefix="/api/Communication",tags=["Communication"])
+app.include_router(hostelRouter, prefix="/api/hostel", tags=["Hostel Management"])
+
 app.include_router(agent_router, prefix="/api/ai", tags=["AI"])
 
 
