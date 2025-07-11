@@ -26,6 +26,7 @@ from app.api.v1.endpoints.feeCollectionAnalytics import feesAnalytcs
 from app.api.v1.endpoints.book_routes import booksRouter
 from app.api.v1.endpoints.inventroy_routes import inventoryRouter
 from app.api.v1.endpoints.hostel_routes import hostelRouter
+from app.api.v1.endpoints.terms_routes import term_router
 from app.schema.auth import client_router
 
 import os
@@ -53,6 +54,7 @@ app.include_router(school_router, prefix="/api/school", tags=["School"])
 app.include_router(class_section_router, prefix="/api/class-section", tags=["Class & Section"])
 app.include_router(student_router, prefix="/api/student", tags=["Student Login"])
 app.include_router(subject_router, prefix="/api/subject", tags=["subject"])
+app.include_router(term_router, prefix="/api/terms", tags=["Exam Term"])
 app.include_router(result_router, prefix="/api/exam", tags=["Exams / Result"])
 app.include_router(room_router, prefix="/api/room", tags=["Examination Hall & Seating plan"])
 app.include_router(timeTableRoutes, prefix="/api/timetable", tags=["Time Table"])
