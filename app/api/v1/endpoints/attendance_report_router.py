@@ -37,7 +37,7 @@ def attendance_summary(school_id: str, date_str: str = None):
         "data": [r["count"] for r in result]
     }
 
-# ✅ 2. Absent/Leave List Table
+# ✅ 2. Absent/Leave List Table 
 @attendanceAnalytcsModule.get("/report/attendance/status-list")
 def attendance_status_list(school_id: str, date_str: str, status: str):
     query_date = datetime.fromisoformat(date_str).date()
