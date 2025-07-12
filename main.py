@@ -27,7 +27,9 @@ from app.api.v1.endpoints.book_routes import booksRouter
 from app.api.v1.endpoints.inventroy_routes import inventoryRouter
 from app.api.v1.endpoints.hostel_routes import hostelRouter
 from app.api.v1.endpoints.terms_routes import term_router
+from app.api.v1.endpoints.ai_rotes import ai_agent_router
 from app.schema.auth import client_router
+
 
 import os
 import uvicorn
@@ -71,7 +73,7 @@ app.include_router(inventoryRouter, prefix="/api/inventory", tags=["Inventory Ma
 app.include_router(communication_router, prefix="/api/Communication",tags=["Communication"])
 app.include_router(hostelRouter, prefix="/api/hostel", tags=["Hostel Management"])
 
-app.include_router(agent_router, prefix="/api/ai", tags=["AI"])
+app.include_router(ai_agent_router, prefix="/api/ai", tags=["AI"])
 
 
 

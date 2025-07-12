@@ -10,7 +10,7 @@ class BaseAppSettings(BaseSettings):
     app_host: str = Field(..., env="APP_HOST")
     debug: bool = True
     environment: Literal["dev", "prod"] = Field("dev", env="ENVIRONMENT")
-    
+    OPENAI_API_KEY: str = Field(..., env="OPENAI_API_KEY")
     mongo_uri: str = Field(..., env="MONGO_URI")
     mongo_db_name: str = Field(..., env="MONGO_DB_NAME")
     

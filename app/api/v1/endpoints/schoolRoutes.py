@@ -69,4 +69,11 @@ async def register_school_with_image(
 
 @school_router.get("/get-all-schools")
 async def get_all_schools():
-    return get_all_schools_service()
+    schools_data = School.objects.all()
+    print(schools_data)
+    fromjson = json.loads(schools_data.to_json())
+    return {
+        "message": "Here is the full list of schools",
+        "data": fromjson,
+        "status": True
+    }
