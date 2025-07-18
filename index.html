@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PDF Designer PRO</title>
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+  <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+  <style>
+    body { margin: 0; font-family: Arial; }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .canvas {
+      flex: 2;
+      position: relative;
+      margin: 10px;
+      background-image: linear-gradient(#eee 1px, transparent 1px),
+                        linear-gradient(90deg, #eee 1px, transparent 1px);
+      background-size: 20px 20px;
+      border: 2px dashed #aaa;
+      overflow: hidden;
+    }
+
+    .field-panel {
+      flex: 1;
+      border-left: 1px solid #ddd;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    .draggable-field {
+      padding: 10px;
+      border: 1px solid #aaa;
+      margin-bottom: 10px;
+      background: #fff;
+      cursor: grab;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .placed-field {
+      position: absolute;
+      background: #e3f2fd;
+      border: 1px solid #2196f3;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: move;
+    }
+
+    .image-preview {
+      max-width: 100%;
+      margin-top: 10px;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div id="canvas" class="canvas"></div>
+
+  <div class="field-panel">
+    <h3>📦 Drag Fields</h3>
+    <div class="draggable-field" data-type="name">Student Name</div>
+    <div class="draggable-field" data-type="roll">Roll No</div>
+    <div class="draggable-field" data-type="school">School</div>
+    <div class="draggable-field" data-type="grade">Grade</div>
+
+    <h3>🖼️ Upload Image</h3>
+    <input type="file" id="imgUpload" accept="image/*">
+    <div id="imgThumb"></div>
+
+    <div class="controls">
+      <button onclick="saveLayout()">💾 Save Layout</button>
+      <button onclick="loadLayout()">📂 Load Layout</button>
+      <button onclick="downloadPDF()">⬇️ Export PDF</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const gridSize = 20;
+
+  interact('.draggable-field').draggable({
+    inertia: true,
+    onmove: dragMoveListener,
+    onend: event => {
+      const type = event.target.getAttribute('data-type');
+      const x = Math.round(event.pageX - canvas.offsetLeft);
+      const y = Math.round(event.pageY - canvas.offsetTop);
+
+      const snappedX = Math.round(x / gridSize) * gridSize;
+      const snappedY = Math.round(y / gridSize) * gridSize;
+
+      const newField = document.createElement('div');
+      newField.classList.add('placed-field');
+      newField.textContent = type.toUpperCase();
+      newField.contentEditable = true;
+      newField.style.left = snappedX + 'px';
+      newField.style.top = snappedY + 'px';
+      newField.setAttribute('data-type', type);
+
+      makeMovable(newField);
+      canvas.appendChild(newField);
+    }
+  });
+
+  function makeMovable(el) {
+    interact(el).draggable({
+      modifiers: [
+        interact.modifiers.snap({
+          targets: [interact.snappers.grid({ x: gridSize, y: gridSize })],
+          range: Infinity
+        }),
+        interact.modifiers.restrictRect({
+          restriction: 'parent'
+        })
+      ],
+      onmove: event => {
+        const target = event.target;
+        const x = (parseFloat(target.style.left) || 0) + event.dx;
+        const y = (parseFloat(target.style.top) || 0) + event.dy;
+
+        const snappedX = Math.round(x / gridSize) * gridSize;
+        const snappedY = Math.round(y / gridSize) * gridSize;
+
+        target.style.left = snappedX + 'px';
+        target.style.top = snappedY + 'px';
+      }
+    });
+  }
+
+  function downloadPDF() {
+    html2pdf().from(canvas).set({
+      margin: 0,
+      filename: 'designed-pdf.pdf',
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
+    }).save();
+  }
+
+  function saveLayout() {
+    const elements = Array.from(canvas.children);
+    const layout = elements.map(el => {
+      return {
+        type: el.tagName === 'IMG' ? 'image' : el.getAttribute('data-type'),
+        text: el.innerText || null,
+        src: el.src || null,
+        x: el.style.left,
+        y: el.style.top
+      };
+    });
+    localStorage.setItem('layout', JSON.stringify(layout));
+    alert('Layout saved to browser!');
+  }
+
+  function loadLayout() {
+    const layout = JSON.parse(localStorage.getItem('layout') || '[]');
+    canvas.innerHTML = '';
+    layout.forEach(item => {
+      let el;
+      if (item.type === 'image') {
+        el = document.createElement('img');
+        el.src = item.src;
+        el.style.width = '80px';
+      } else {
+        el = document.createElement('div');
+        el.textContent = item.text || item.type.toUpperCase();
+        el.contentEditable = true;
+      }
+      el.classList.add('placed-field');
+      el.style.left = item.x;
+      el.style.top = item.y;
+      makeMovable(el);
+      canvas.appendChild(el);
+    });
+  }
+
+  // Image upload
+  document.getElementById('imgUpload').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (evt) {
+      const img = document.createElement('img');
+      img.src = evt.target.result;
+      img.style.width = '80px';
+      img.style.cursor = 'move';
+      img.classList.add('placed-field');
+
+      img.style.left = '100px';
+      img.style.top = '100px';
+
+      makeMovable(img);
+      canvas.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  function dragMoveListener(event) {
+    // Required by interact.js
+  }
+</script>
+
+</body>
+</html>
+                         

@@ -16,7 +16,7 @@ Your job is to assist students, staff, and administrators in querying and managi
 - student : ReferenceField
 - date : DateField
 - status : StringField
-- created_at : DateTimeField
+- created_at : DateTimeFiel
 
 ### Class (Document)
 - school_id : ReferenceField
@@ -24,7 +24,7 @@ Your job is to assist students, staff, and administrators in querying and managi
 - is_active : BooleanField
 - fee_structure : ListField
 
-### Section (Document)
+### Section (Document)s
 - class_id : ReferenceField
 - section_name : StringField
 - is_active : BooleanField
