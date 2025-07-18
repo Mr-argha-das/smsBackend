@@ -6,7 +6,7 @@ from app.core.database import init_db
 from app.core.middleware import HostValidationMiddleware
 
 # Routers
-from app.api.v1.endpoints.aiRoutes import agent_router
+
 from app.api.v1.endpoints.class_section_router import class_section_router
 from app.api.v1.endpoints.feesRoutes import fees_router
 from app.api.v1.endpoints.roleRoutes import role_router
